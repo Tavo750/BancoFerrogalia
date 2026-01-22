@@ -1,0 +1,73 @@
+<section class="products">
+  <div class="container">
+    <div class="products__grid">
+      <!-- Pre-approved products section -->
+      <div class="products__preapproved">
+        <div class="products__preapproved-content">
+          <h2 class="products__title">¡Conoce tus productos preaprobados!</h2>
+          <p class="products__subtitle">Solo con tu número de documento</p>
+          <p class="products__info">Para clientes y no clientes Ferrogalia</p>
+          
+          <form class="products__form" (ngSubmit)="checkProducts()">
+            <div class="products__form-group">
+              <label for="docType" class="products__label">Tipo de documento</label>
+              <select id="docType" class="products__select">
+                <option value="dni">DNI</option>
+                <option value="ce">CE</option>
+                <option value="pasaporte">Pasaporte</option>
+              </select>
+            </div>
+            
+            <div class="products__form-group">
+              <label for="docNumber" class="products__label">Número de documento</label>
+              <input 
+                type="text" 
+                id="docNumber" 
+                class="products__input"
+                [(ngModel)]="documentNumber"
+                name="documentNumber"
+                placeholder="Ingresa tu número"
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary products__btn">
+              Conocer
+            </button>
+          </form>
+
+          <p class="products__privacy">
+            Declaro conocer que esta información será utilizada únicamente para los fines de este proceso, 
+            y será tratada según lo indicado en la 
+            <a href="#">Política de Privacidad</a>.
+          </p>
+        </div>
+
+        <div class="products__preapproved-image">
+          <div class="products__image-placeholder">
+            <span class="material-icons">person_search</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick help section -->
+      <div class="products__help">
+        <h3 class="products__help-title">Ayuda rápida</h3>
+        <ul class="products__help-list">
+          @for (item of quickHelp; track item.title) {
+            <li class="products__help-item">
+              <a [href]="item.link" class="products__help-link">
+                <span class="material-icons">help_outline</span>
+                {{ item.title }}
+                <span class="material-icons products__help-arrow">chevron_right</span>
+              </a>
+            </li>
+          }
+        </ul>
+        <a href="#" class="products__help-more">
+          <span class="material-icons">support_agent</span>
+          Ir a Ayuda Rápida
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

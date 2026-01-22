@@ -1,0 +1,70 @@
+<header class="header">
+  <!-- Top bar -->
+  <div class="header__topbar">
+    <div class="container">
+      <div class="header__topbar-content">
+        <div class="header__topbar-left">
+          <a href="#" class="header__topbar-link">
+            <span class="material-icons">location_on</span>
+            Ubica una Agencia
+          </a>
+          <a href="#" class="header__topbar-link">
+            <span class="material-icons">support_agent</span>
+            Contáctanos
+          </a>
+        </div>
+        <div class="header__topbar-right">
+          <a href="#" class="header__topbar-link">Personas</a>
+          <a href="#" class="header__topbar-link">Empresas</a>
+          <a href="#" class="header__topbar-link">Banca Privada</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main header -->
+  <div class="header__main">
+    <div class="container">
+      <div class="header__content">
+        <!-- Logo -->
+        <a href="#" class="header__logo">
+          <img src="assets/images/logo-ferrogalia.svg" alt="Banco Ferrogalia" class="header__logo-img">
+        </a>
+
+        <!-- Navigation -->
+        <nav class="header__nav" [class.active]="isMenuOpen">
+          <ul class="header__menu">
+            @for (item of menuItems; track item.label) {
+              <li class="header__menu-item">
+                <a href="{{ item.link }}" class="header__menu-link">
+                  {{ item.label }}
+                  @if (item.hasSubmenu) {
+                    <span class="material-icons">expand_more</span>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+
+        <!-- Actions -->
+        <div class="header__actions">
+          <a href="#" class="header__search">
+            <span class="material-icons">search</span>
+          </a>
+          <a href="#" class="btn btn-secondary header__btn-account">
+            Abrir Cuenta
+          </a>
+          <a href="#" class="btn btn-primary header__btn-login">
+            Banca en Línea
+          </a>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <button class="header__toggle" (click)="toggleMenu()">
+          <span class="material-icons">{{ isMenuOpen ? 'close' : 'menu' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

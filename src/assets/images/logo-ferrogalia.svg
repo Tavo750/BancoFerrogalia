@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
+  <defs>
+    <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5D182E"/>
+      <stop offset="100%" style="stop-color:#7D283E"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Compass/Star Symbol -->
+  <g transform="translate(50, 50)">
+    <!-- Outer circle -->
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#9E9790" stroke-width="3"/>
+    
+    <!-- Four-pointed star -->
+    <polygon points="0,-35 8,-8 35,0 8,8 0,35 -8,8 -35,0 -8,-8" fill="#5D182E"/>
+    
+    <!-- Inner diamond -->
+    <polygon points="0,-12 12,0 0,12 -12,0" fill="#9E9790"/>
+    
+    <!-- Center diamond -->
+    <polygon points="0,-6 6,0 0,6 -6,0" fill="white"/>
+    
+    <!-- Small triangular accents -->
+    <polygon points="18,-18 25,-10 18,-10" fill="#9E9790"/>
+    <polygon points="-18,-18 -25,-10 -18,-10" fill="#9E9790"/>
+    <polygon points="18,18 25,10 18,10" fill="#9E9790"/>
+    <polygon points="-18,18 -25,10 -18,10" fill="#9E9790"/>
+  </g>
+  
+  <!-- Text: BANCO -->
+  <text x="110" y="40" font-family="Georgia, serif" font-size="28" font-weight="400" fill="#635E59" letter-spacing="4">BANCO</text>
+  
+  <!-- Text: FERROGALIA -->
+  <text x="110" y="75" font-family="Georgia, serif" font-size="32" font-weight="400" fill="#635E59" letter-spacing="2">FERROGALIA</text>
+</svg>

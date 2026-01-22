@@ -1,0 +1,49 @@
+<section class="promotions">
+  <div class="container">
+    <!-- Promotions section -->
+    <div class="promotions__header">
+      <h2 class="promotions__title">Explora las mejores promociones</h2>
+      <p class="promotions__subtitle">Descubre beneficios exclusivos para ti</p>
+    </div>
+
+    <div class="promotions__grid">
+      @for (promo of promotions; track promo.title) {
+        <a [href]="promo.link" class="promotions__card" [attr.data-color]="promo.color">
+          <div class="promotions__card-icon">
+            <span class="material-icons">{{ promo.icon }}</span>
+          </div>
+          <div class="promotions__card-content">
+            <h3 class="promotions__card-title">{{ promo.title }}</h3>
+            <p class="promotions__card-description">{{ promo.description }}</p>
+          </div>
+          <span class="material-icons promotions__card-arrow">arrow_forward</span>
+        </a>
+      }
+    </div>
+
+    <!-- Education section -->
+    <div class="promotions__education">
+      <div class="promotions__education-header">
+        <div class="promotions__education-info">
+          <h2 class="promotions__title">¡Únete a más de 1 millón de capacitados!</h2>
+          <p class="promotions__subtitle">Educación financiera gratuita para todos</p>
+        </div>
+        <a href="#" class="btn btn-primary">Ir al Campus ABC</a>
+      </div>
+
+      <div class="promotions__education-grid">
+        @for (item of educationItems; track item.title) {
+          <a [href]="item.link" class="promotions__education-card">
+            <div class="promotions__education-icon">
+              <span class="material-icons">school</span>
+            </div>
+            <div>
+              <h4 class="promotions__education-title">{{ item.title }}</h4>
+              <p class="promotions__education-description">{{ item.description }}</p>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</section>

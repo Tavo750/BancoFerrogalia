@@ -1,0 +1,125 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__main">
+      <!-- Logo and description -->
+      <div class="footer__brand">
+        <a href="#" class="footer__logo">
+          <img src="assets/images/logo-ferrogalia-white.svg" alt="Banco Ferrogalia" class="footer__logo-img">
+        </a>
+        <p class="footer__description">
+          Tu banco de confianza. Brindamos soluciones financieras innovadoras para personas y empresas.
+        </p>
+        
+        <!-- Contact -->
+        <div class="footer__contact">
+          <h4 class="footer__contact-title">Contáctanos</h4>
+          <a href="#" class="footer__contact-link">
+            <span class="material-icons">chat</span>
+            Chatea por WhatsApp
+          </a>
+          <a href="#" class="footer__contact-link">
+            <span class="material-icons">location_on</span>
+            Ubica una Agencia
+          </a>
+        </div>
+
+        <!-- Social -->
+        <div class="footer__social">
+          <h4 class="footer__social-title">Síguenos</h4>
+          <div class="footer__social-links">
+            @for (social of socialLinks; track social.label) {
+              <a [href]="social.link" class="footer__social-link" [attr.aria-label]="social.label">
+                <span class="material-icons">{{ social.icon === 'facebook' ? 'facebook' : social.icon === 'twitter' ? 'tag' : social.icon === 'youtube' ? 'play_circle' : social.icon === 'linkedin' ? 'work' : 'photo_camera' }}</span>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Links columns -->
+      <div class="footer__links">
+        <div class="footer__column">
+          <h4 class="footer__column-title">Sobre Ferrogalia</h4>
+          <ul class="footer__list">
+            @for (link of footerLinks.about; track link.label) {
+              <li class="footer__list-item">
+                <a [href]="link.link" class="footer__link" [class.highlight]="link.highlight">
+                  {{ link.label }}
+                  @if (link.highlight) {
+                    <span class="footer__badge">¡Postula!</span>
+                  }
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__column-title">Ayuda</h4>
+          <ul class="footer__list">
+            @for (link of footerLinks.help; track link.label) {
+              <li class="footer__list-item">
+                <a [href]="link.link" class="footer__link">{{ link.label }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__column-title">Legales</h4>
+          <ul class="footer__list">
+            @for (link of footerLinks.legal; track link.label) {
+              <li class="footer__list-item">
+                <a [href]="link.link" class="footer__link">{{ link.label }}</a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer__column">
+          <h4 class="footer__column-title">Novedades</h4>
+          <ul class="footer__list">
+            @for (link of footerLinks.news; track link.label) {
+              <li class="footer__list-item">
+                <a [href]="link.link" class="footer__link">{{ link.label }}</a>
+              </li>
+            }
+          </ul>
+
+          <!-- App download -->
+          <div class="footer__app">
+            <p class="footer__app-text">Descarga el App Banca Móvil</p>
+            <div class="footer__app-buttons">
+              <a href="#" class="footer__app-btn">
+                <span class="material-icons">android</span>
+                Google Play
+              </a>
+              <a href="#" class="footer__app-btn">
+                <span class="material-icons">apple</span>
+                App Store
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copyright">
+        © {{ currentYear }} Banco Ferrogalia | Todos los derechos reservados.<br>
+        Sede Central, Av. Principal 156, Lima, Perú. RUC 20100000001
+      </p>
+      <div class="footer__actions">
+        <a href="#" class="footer__action-link">
+          <span class="material-icons">report_problem</span>
+          Sistema de Denuncias
+        </a>
+        <a href="#" class="footer__action-link">
+          <span class="material-icons">menu_book</span>
+          Libro de Reclamaciones
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

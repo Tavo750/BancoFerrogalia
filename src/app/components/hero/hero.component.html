@@ -1,0 +1,37 @@
+<section class="hero">
+  <div class="hero__slider">
+    @for (slide of slides; track slide.title; let i = $index) {
+      <div class="hero__slide" [class.active]="i === currentSlide">
+        <div class="hero__slide-bg"></div>
+        <div class="container">
+          <div class="hero__content">
+            <h1 class="hero__title">{{ slide.title }}</h1>
+            <p class="hero__subtitle">{{ slide.subtitle }}</p>
+            <a [href]="slide.link" class="btn btn-primary hero__cta">
+              {{ slide.cta }}
+            </a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Navigation arrows -->
+  <button class="hero__nav hero__nav--prev" (click)="prevSlide()">
+    <span class="material-icons">chevron_left</span>
+  </button>
+  <button class="hero__nav hero__nav--next" (click)="nextSlide()">
+    <span class="material-icons">chevron_right</span>
+  </button>
+
+  <!-- Dots navigation -->
+  <div class="hero__dots">
+    @for (slide of slides; track slide.title; let i = $index) {
+      <button 
+        class="hero__dot" 
+        [class.active]="i === currentSlide"
+        (click)="goToSlide(i)">
+      </button>
+    }
+  </div>
+</section>

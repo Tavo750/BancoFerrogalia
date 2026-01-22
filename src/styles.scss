@@ -1,0 +1,239 @@
+// Paleta de colores Banco Ferrogalia
+$color-primary: #5D182E;      // Botones CTA, navegación, iconos activos
+$color-secondary: #635E59;    // Títulos, footer, textos destacados
+$color-accent: #9E9790;       // Bordes, líneas divisorias, fondos secundarios
+$color-background: #F9F9F9;   // Fondo general
+$color-white: #FFFFFF;
+$color-text: #333333;
+$color-text-light: #666666;
+
+// Variables globales
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: $color-background;
+  color: $color-text;
+  line-height: 1.6;
+}
+
+// Tipografía
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $color-secondary;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $color-secondary;
+  margin-bottom: 0.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $color-secondary;
+  margin-bottom: 0.6rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: $color-secondary;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: $color-text-light;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: darken($color-primary, 10%);
+  }
+}
+
+// Botones
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-align: center;
+
+  &-primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+      color: $color-white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($color-primary, 0.3);
+    }
+  }
+
+  &-secondary {
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+      color: $color-white;
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+    color: $color-white;
+    border: 2px solid $color-white;
+
+    &:hover {
+      background-color: $color-white;
+      color: $color-primary;
+    }
+  }
+}
+
+// Contenedores
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 60px 0;
+
+  &-gray {
+    background-color: $color-accent;
+  }
+
+  &-white {
+    background-color: $color-white;
+  }
+}
+
+// Cards
+.card {
+  background-color: $color-white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Utilidades
+.text-center {
+  text-align: center;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-secondary {
+  color: $color-secondary;
+}
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+// Grid
+.grid {
+  display: grid;
+  gap: 24px;
+
+  &-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+}
+
+// Scrollbar personalizada
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-background;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-accent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $color-secondary;
+}
