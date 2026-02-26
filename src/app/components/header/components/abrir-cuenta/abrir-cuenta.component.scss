@@ -1,0 +1,478 @@
+$color-primary: #5D182E;
+$color-secondary: #635E59;
+$color-accent: #9E9790;
+$color-background: #F9F9F9;
+$color-white: #FFFFFF;
+$color-error: #C0392B;
+
+// ─── Hero ────────────────────────────────────────────────────────────────────
+.ac-hero {
+  background: linear-gradient(135deg, $color-primary 0%, darken($color-primary, 8%) 100%);
+  padding: 60px 0 80px;
+
+  @media (max-width: 768px) {
+    padding: 40px 0 60px;
+  }
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: start;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  &__info {
+    color: $color-white;
+    padding-top: 10px;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba($color-white, 0.75);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    transition: color 0.2s ease;
+    text-decoration: none;
+
+    .material-icons { font-size: 18px; }
+
+    &:hover { color: $color-white; }
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 5px 16px;
+    background-color: $color-white;
+    color: $color-primary;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: $color-white;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba($color-white, 0.85);
+    margin-bottom: 32px;
+    max-width: 420px;
+  }
+
+  &__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__highlight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba($color-white, 0.9);
+
+    .material-icons {
+      font-size: 20px;
+      color: lighten($color-primary, 40%);
+    }
+  }
+
+  &__card {
+    background-color: $color-white;
+    border-radius: 20px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 100px;
+
+    @media (max-width: 992px) {
+      position: static;
+    }
+  }
+}
+
+// ─── Card Form ───────────────────────────────────────────────────────────────
+.ac-card {
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $color-secondary;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &--error &__input {
+      border-color: $color-error;
+    }
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: $color-secondary;
+  }
+
+  &__input {
+    padding: 12px 16px;
+    border: 1.5px solid #E0E0E0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: $color-secondary;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: $color-white;
+
+    &::placeholder { color: #BDBDBD; }
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+    }
+  }
+
+  &__error {
+    font-size: 0.78rem;
+    color: $color-error;
+  }
+
+  &__checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    &--error &__check-label { color: $color-error; }
+  }
+
+  &__check {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: $color-primary;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  &__check-label {
+    font-size: 0.9rem;
+    color: $color-secondary;
+    line-height: 1.4;
+    cursor: pointer;
+  }
+
+  &__link {
+    color: $color-primary;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  &__btn {
+    width: 100%;
+    padding: 15px;
+    background-color: $color-primary;
+    color: $color-white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 4px;
+
+    &:hover:not(:disabled) {
+      background-color: darken($color-primary, 8%);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  &__spinner {
+    animation: spin 0.9s linear infinite;
+    font-size: 20px;
+  }
+
+  &__legal {
+    font-size: 0.75rem;
+    color: $color-accent;
+    line-height: 1.5;
+    text-align: center;
+
+    a {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__success {
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    &-icon {
+      font-size: 64px;
+      color: #27AE60;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: $color-secondary;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $color-accent;
+      line-height: 1.5;
+    }
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+// ─── Benefits ────────────────────────────────────────────────────────────────
+.ac-benefits {
+  padding: 70px 0;
+  background-color: $color-background;
+
+  &__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: $color-secondary;
+    text-align: center;
+    margin-bottom: 48px;
+
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    background-color: $color-white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba($color-primary, 0.1);
+    }
+  }
+
+  &__icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba($color-primary, 0.12), rgba($color-primary, 0.05));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    .material-icons {
+      font-size: 26px;
+      color: $color-primary;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    strong {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $color-secondary;
+    }
+
+    span {
+      font-size: 0.88rem;
+      color: $color-accent;
+      line-height: 1.5;
+    }
+  }
+}
+
+// ─── FAQ ─────────────────────────────────────────────────────────────────────
+.ac-faq {
+  padding: 70px 0 90px;
+  background-color: $color-white;
+
+  &__layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 60px;
+    align-items: start;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: 100px;
+
+    @media (max-width: 768px) {
+      position: static;
+    }
+
+    &-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: $color-secondary;
+      line-height: 1.2;
+      padding-bottom: 16px;
+      border-bottom: 3px solid $color-primary;
+      display: inline-block;
+
+      @media (max-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #EEEEEE;
+  }
+
+  &__item {
+    border-bottom: 1px solid #EEEEEE;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &--open &__question {
+      color: $color-primary;
+    }
+  }
+
+  &__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $color-secondary;
+    transition: color 0.2s ease;
+    line-height: 1.4;
+
+    span:first-child {
+      flex: 1;
+    }
+  }
+
+  &__icon {
+    font-size: 22px;
+    color: $color-primary;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  &__answer {
+    padding: 0 0 20px;
+    animation: fadeIn 0.25s ease;
+  }
+
+  &__intro {
+    font-size: 0.95rem;
+    color: $color-secondary;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  &__answer-list {
+    padding-left: 20px;
+    margin-bottom: 0;
+
+    li {
+      font-size: 0.92rem;
+      color: $color-accent;
+      line-height: 1.6;
+      margin-bottom: 6px;
+      list-style: disc;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  p {
+    font-size: 0.92rem;
+    color: $color-accent;
+    line-height: 1.7;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

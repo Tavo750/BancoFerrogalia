@@ -1,0 +1,191 @@
+<!-- Hero Banner -->
+<section class="ac-hero">
+  <div class="container">
+    <div class="ac-hero__layout">
+      <!-- Left: Info -->
+      <div class="ac-hero__info">
+        <a routerLink="/" class="ac-hero__back">
+          <span class="material-icons">arrow_back</span>
+          Volver al inicio
+        </a>
+        <span class="ac-hero__badge">CUENTA CERO COSTO</span>
+        <h1 class="ac-hero__title">Abre tu Cuenta<br>de Ahorro Hoy</h1>
+        <p class="ac-hero__subtitle">
+          Gestiona tu dinero, paga y controla todo 100% digital con Banco Ferrogalia.
+        </p>
+        <div class="ac-hero__highlights">
+          <div class="ac-hero__highlight">
+            <span class="material-icons">check_circle</span>
+            Sin comisiones de mantenimiento
+          </div>
+          <div class="ac-hero__highlight">
+            <span class="material-icons">check_circle</span>
+            Apertura biométrica en minutos
+          </div>
+          <div class="ac-hero__highlight">
+            <span class="material-icons">check_circle</span>
+            Sin monto mínimo de apertura
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form Card -->
+      <div class="ac-hero__card">
+        <h2 class="ac-card__title">Solicítala 100% online</h2>
+
+        @if (!submitted) {
+          <form class="ac-card__form" (ngSubmit)="onSubmit()">
+            <div class="ac-card__field" [class.ac-card__field--error]="errors['dni']">
+              <label class="ac-card__label" for="dni">DNI</label>
+              <input
+                id="dni"
+                type="text"
+                class="ac-card__input"
+                placeholder="00000000"
+                maxlength="8"
+                [(ngModel)]="form.dni"
+                name="dni"
+                (input)="clearError('dni')"
+              >
+              @if (errors['dni']) {
+                <span class="ac-card__error">{{ errors['dni'] }}</span>
+              }
+            </div>
+
+            <div class="ac-card__field" [class.ac-card__field--error]="errors['celular']">
+              <label class="ac-card__label" for="celular">Celular</label>
+              <input
+                id="celular"
+                type="tel"
+                class="ac-card__input"
+                placeholder="000000000"
+                maxlength="9"
+                [(ngModel)]="form.celular"
+                name="celular"
+                (input)="clearError('celular')"
+              >
+              @if (errors['celular']) {
+                <span class="ac-card__error">{{ errors['celular'] }}</span>
+              }
+            </div>
+
+            <div class="ac-card__field" [class.ac-card__field--error]="errors['correo']">
+              <label class="ac-card__label" for="correo">Correo</label>
+              <input
+                id="correo"
+                type="email"
+                class="ac-card__input"
+                placeholder="correo@ejemplo.com"
+                [(ngModel)]="form.correo"
+                name="correo"
+                (input)="clearError('correo')"
+              >
+              @if (errors['correo']) {
+                <span class="ac-card__error">{{ errors['correo'] }}</span>
+              }
+            </div>
+
+            <div class="ac-card__checkbox" [class.ac-card__checkbox--error]="errors['privacidad']">
+              <input
+                id="privacidad"
+                type="checkbox"
+                class="ac-card__check"
+                [(ngModel)]="form.privacidad"
+                name="privacidad"
+                (change)="clearError('privacidad')"
+              >
+              <label for="privacidad" class="ac-card__check-label">
+                He leído y acepto la
+                <a href="#" class="ac-card__link">Política de Privacidad.</a>
+              </label>
+            </div>
+            @if (errors['privacidad']) {
+              <span class="ac-card__error">{{ errors['privacidad'] }}</span>
+            }
+
+            <button type="submit" class="ac-card__btn" [disabled]="loading">
+              @if (loading) {
+                <span class="material-icons ac-card__spinner">autorenew</span>
+              } @else {
+                Abrir cuenta de ahorro
+              }
+            </button>
+
+            <p class="ac-card__legal">
+              Este sitio está protegido por reCAPTCHA. Aplican la
+              <a href="#">Política de Privacidad</a> de Google y los
+              <a href="#">Términos del Servicio</a>.
+            </p>
+          </form>
+        } @else {
+          <div class="ac-card__success">
+            <span class="material-icons ac-card__success-icon">check_circle</span>
+            <h3>¡Solicitud enviada!</h3>
+            <p>Te contactaremos pronto para completar la apertura de tu cuenta.</p>
+            <button class="ac-card__btn" (click)="resetForm()">Nueva solicitud</button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="ac-benefits">
+  <div class="container">
+    <h2 class="ac-benefits__title">Descubre los beneficios de tu Cuenta de Ahorro</h2>
+    <div class="ac-benefits__grid">
+      @for (benefit of benefits; track benefit.title) {
+        <div class="ac-benefits__item">
+          <div class="ac-benefits__icon">
+            <span class="material-icons">{{ benefit.icon }}</span>
+          </div>
+          <div class="ac-benefits__text">
+            <strong>{{ benefit.title }}</strong>
+            <span>{{ benefit.description }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="ac-faq">
+  <div class="container">
+    <div class="ac-faq__layout">
+      <div class="ac-faq__sidebar">
+        <h2 class="ac-faq__sidebar-title">Preguntas<br>Frecuentes</h2>
+      </div>
+      <div class="ac-faq__list">
+        @for (faq of faqs; track faq.question; let i = $index) {
+          <div class="ac-faq__item" [class.ac-faq__item--open]="openFaq === i" (click)="toggleFaq(i)">
+            <div class="ac-faq__question">
+              <span>{{ faq.question }}</span>
+              <span class="material-icons ac-faq__icon">
+                {{ openFaq === i ? 'expand_less' : 'expand_more' }}
+              </span>
+            </div>
+            @if (openFaq === i) {
+              <div class="ac-faq__answer">
+                @if (faq.intro) {
+                  <p class="ac-faq__intro">{{ faq.intro }}</p>
+                }
+                @if (faq.items && faq.items.length > 0) {
+                  <ul class="ac-faq__answer-list">
+                    @for (item of faq.items; track item) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                }
+                @if (faq.text) {
+                  <p>{{ faq.text }}</p>
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
