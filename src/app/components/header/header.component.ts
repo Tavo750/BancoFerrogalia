@@ -278,7 +278,6 @@ export class HeaderComponent {
           title: 'Canales de Atención',
           items: [
             { label: 'Chat en línea 24/7', link: '#' },
-            { label: 'Central telefónica (01) 600-0000', link: '#' },
             { label: 'Correo: ayuda@ferrogalia.pe', link: '#' }
           ]
         },
