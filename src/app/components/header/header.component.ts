@@ -277,7 +277,7 @@ export class HeaderComponent {
         {
           title: 'Canales de Atención',
           items: [
-            { label: 'Chat en línea 24/7', link: '#' },
+            { label: 'Chat en línea 24/7', link: 'https://wa.me/51943643626' },
             { label: 'Correo: ayuda@ferrogalia.pe', link: '#' }
           ]
         },

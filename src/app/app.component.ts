@@ -25,7 +25,7 @@ import { filter } from 'rxjs/operators';
       <app-footer></app-footer>
     }
     <a
-      href="https://wa.me/51943643626"
+      href="https://wa.me/51943643626?text=Hola%20Banco%20Ferrogalia%2C%20necesito%20ayuda"
       target="_blank"
       rel="noopener noreferrer"
       class="whatsapp-float"
