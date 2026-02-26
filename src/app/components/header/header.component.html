@@ -35,14 +35,216 @@
         <nav class="header__nav" [class.active]="isMenuOpen">
           <ul class="header__menu">
             @for (item of menuItems; track item.label) {
-              <li class="header__menu-item">
-                <a href="{{ item.link }}" class="header__menu-link">
+              <li class="header__menu-item"
+                [class.header__menu-item--mega]="item.key"
+                (mouseenter)="item.key ? openMegaMenu(item.key) : null"
+                (mouseleave)="item.key ? closeMegaMenu() : null">
+                <a [href]="item.link" class="header__menu-link" [class.header__menu-link--active]="openMenuKey === item.key">
                   {{ item.label }}
-                  @if (item.hasSubmenu) {
+                  @if (item.key) {
                     <span class="material-icons">expand_more</span>
                   }
                 </a>
-              </li>
+
+                <!-- ── Mega Menu: PRODUCTOS ── -->
+                @if (item.key === 'productos' && openMenuKey === 'productos') {
+                  <div class="mega-menu" (mouseenter)="openMegaMenu('productos')" (mouseleave)="closeMegaMenu()">
+                    <div class="mega-menu__tabs">
+                      @for (tab of productTabs; track tab.id) {
+                        <button class="mega-menu__tab"
+                          [class.mega-menu__tab--active]="activeProductTab === tab.id"
+                          (click)="setProductTab(tab.id)"
+                          (mouseenter)="setProductTab(tab.id)">
+                          <span class="material-icons">{{ tab.icon }}</span>
+                          <span>{{ tab.label }}</span>
+                        </button>
+                      }
+                    </div>
+                    @if (activeProductTabData) {
+                      <div class="mega-menu__body">
+                        <div class="mega-menu__groups">
+                          @for (group of activeProductTabData.groups; track group.title) {
+                            <div class="mega-menu__group">
+                              <h4 class="mega-menu__group-title">{{ group.title }}</h4>
+                              <ul class="mega-menu__group-list">
+                                @for (link of group.items; track link.label) {
+                                  <li>
+                                    <a [routerLink]="link.link" class="mega-menu__link" (click)="closeMegaMenu()">
+                                      {{ link.label }}
+                                    </a>
+                                  </li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        </div>
+                        <div class="mega-menu__promo">
+                          <div class="mega-menu__promo-content">
+                            <h3>Abre tu cuenta<br><strong>100% digital</strong></h3>
+                            <p>Sin comisiones, sin mínimo de apertura. Solo con biometría facial.</p>
+                            <a routerLink="/abrir-cuenta" class="mega-menu__promo-btn" (click)="closeMegaMenu()">
+                              SOLICÍTALA AQUÍ
+                            </a>
+                          </div>
+                          <div class="mega-menu__promo-badge">
+                            <span class="material-icons">verified</span>
+                            Primer mes<br>sin costo
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+
+                <!-- ── Mega Menu: SERVICIOS ── -->
+                @if (item.key === 'servicios' && openMenuKey === 'servicios') {
+                  <div class="mega-menu" (mouseenter)="openMegaMenu('servicios')" (mouseleave)="closeMegaMenu()">
+                    <div class="mega-menu__tabs">
+                      @for (tab of serviceTabs; track tab.id) {
+                        <button class="mega-menu__tab"
+                          [class.mega-menu__tab--active]="activeServiceTab === tab.id"
+                          (click)="setServiceTab(tab.id)"
+                          (mouseenter)="setServiceTab(tab.id)">
+                          <span class="material-icons">{{ tab.icon }}</span>
+                          <span>{{ tab.label }}</span>
+                        </button>
+                      }
+                    </div>
+                    @if (activeServiceTabData) {
+                      <div class="mega-menu__body">
+                        <div class="mega-menu__groups">
+                          @for (group of activeServiceTabData.groups; track group.title) {
+                            <div class="mega-menu__group">
+                              <h4 class="mega-menu__group-title">{{ group.title }}</h4>
+                              <ul class="mega-menu__group-list">
+                                @for (link of group.items; track link.label) {
+                                  <li>
+                                    <a [href]="link.link" class="mega-menu__link" (click)="closeMegaMenu()">
+                                      {{ link.label }}
+                                    </a>
+                                  </li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        </div>
+                        <div class="mega-menu__promo mega-menu__promo--services">
+                          <div class="mega-menu__promo-content">
+                            <h3>Banca digital<br><strong>sin fricciones</strong></h3>
+                            <p>Transfiere, cobra y gestiona tu dinero desde donde estés, al instante.</p>
+                            <a routerLink="/abrir-cuenta" class="mega-menu__promo-btn" (click)="closeMegaMenu()">
+                              EMPIEZA AHORA
+                            </a>
+                          </div>
+                          <div class="mega-menu__promo-badge">
+                            <span class="material-icons">bolt</span>
+                            100%<br>digital
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+
+                <!-- ── Mega Menu: PROMOCIONES ── -->
+                @if (item.key === 'promociones' && openMenuKey === 'promociones') {
+                  <div class="mega-menu" (mouseenter)="openMegaMenu('promociones')" (mouseleave)="closeMegaMenu()">
+                    <div class="mega-menu__tabs">
+                      @for (tab of promocionesTabs; track tab.id) {
+                        <button class="mega-menu__tab"
+                          [class.mega-menu__tab--active]="activePromoTab === tab.id"
+                          (click)="setPromoTab(tab.id)"
+                          (mouseenter)="setPromoTab(tab.id)">
+                          <span class="material-icons">{{ tab.icon }}</span>
+                          <span>{{ tab.label }}</span>
+                        </button>
+                      }
+                    </div>
+                    @if (activePromoTabData) {
+                      <div class="mega-menu__body">
+                        <div class="mega-menu__groups">
+                          @for (group of activePromoTabData.groups; track group.title) {
+                            <div class="mega-menu__group">
+                              <h4 class="mega-menu__group-title">{{ group.title }}</h4>
+                              <ul class="mega-menu__group-list">
+                                @for (link of group.items; track link.label) {
+                                  <li>
+                                    <a [routerLink]="link.link" class="mega-menu__link" (click)="closeMegaMenu()">
+                                      {{ link.label }}
+                                    </a>
+                                  </li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        </div>
+                        <div class="mega-menu__promo mega-menu__promo--promo">
+                          <div class="mega-menu__promo-content">
+                            <h3>¡Abre tu cuenta<br><strong>y gana premios!</strong></h3>
+                            <p>Participa en sorteos exclusivos al aperturar tu cuenta de ahorro.</p>
+                            <a routerLink="/abrir-cuenta" class="mega-menu__promo-btn" (click)="closeMegaMenu()">
+                              PARTICIPAR AHORA
+                            </a>
+                          </div>
+                          <div class="mega-menu__promo-badge">
+                            <span class="material-icons">emoji_events</span>
+                            Sorteos<br>exclusivos
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
+
+                <!-- ── Mega Menu: AYUDA ── -->
+                @if (item.key === 'ayuda' && openMenuKey === 'ayuda') {
+                  <div class="mega-menu" (mouseenter)="openMegaMenu('ayuda')" (mouseleave)="closeMegaMenu()">
+                    <div class="mega-menu__tabs">
+                      @for (tab of ayudaTabs; track tab.id) {
+                        <button class="mega-menu__tab"
+                          [class.mega-menu__tab--active]="activeAyudaTab === tab.id"
+                          (click)="setAyudaTab(tab.id)"
+                          (mouseenter)="setAyudaTab(tab.id)">
+                          <span class="material-icons">{{ tab.icon }}</span>
+                          <span>{{ tab.label }}</span>
+                        </button>
+                      }
+                    </div>
+                    @if (activeAyudaTabData) {
+                      <div class="mega-menu__body">
+                        <div class="mega-menu__groups">
+                          @for (group of activeAyudaTabData.groups; track group.title) {
+                            <div class="mega-menu__group">
+                              <h4 class="mega-menu__group-title">{{ group.title }}</h4>
+                              <ul class="mega-menu__group-list">
+                                @for (link of group.items; track link.label) {
+                                  <li>
+                                    <a [href]="link.link" class="mega-menu__link" (click)="closeMegaMenu()">
+                                      {{ link.label }}
+                                    </a>
+                                  </li>
+                                }
+                              </ul>
+                            </div>
+                          }
+                        </div>
+                        <div class="mega-menu__promo mega-menu__promo--ayuda">
+                          <div class="mega-menu__promo-content">
+                            <h3>Estamos aquí<br><strong>para ayudarte</strong></h3>
+                            <p>Atención 24/7 por chat, teléfono o en nuestras agencias.</p>
+                            <a href="#" class="mega-menu__promo-btn" (click)="closeMegaMenu()">
+                              CHAT EN LÍNEA
+                            </a>
+                          </div>
+                          <div class="mega-menu__promo-badge">
+                            <span class="material-icons">support_agent</span>
+                            Ayuda<br>24/7
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                }
             }
           </ul>
         </nav>

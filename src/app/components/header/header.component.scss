@@ -10,6 +10,7 @@ $color-white: #FFFFFF;
   z-index: 1000;
   background-color: $color-white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 
   &__topbar {
     background-color: $color-secondary;
@@ -103,6 +104,10 @@ $color-white: #FFFFFF;
 
     &-item {
       position: relative;
+
+      &--mega {
+        position: static;
+      }
     }
 
     &-link {
@@ -120,7 +125,7 @@ $color-white: #FFFFFF;
         transition: transform 0.3s ease;
       }
 
-      &:hover {
+      &:hover, &--active {
         background-color: rgba($color-primary, 0.08);
         color: $color-primary;
 
@@ -197,6 +202,230 @@ $color-white: #FFFFFF;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+// ─── Mega Menu ───────────────────────────────────────────────────────────────
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 860px;
+  background-color: $color-white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: megaFadeIn 0.2s ease;
+  z-index: 2000;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+
+  &__tabs {
+    display: flex;
+    background-color: $color-background;
+    border-bottom: 1px solid rgba($color-accent, 0.25);
+    padding: 0 20px;
+    gap: 4px;
+    overflow-x: auto;
+  }
+
+  &__tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82rem;
+    color: $color-accent;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    margin-bottom: -1px;
+
+    .material-icons {
+      font-size: 26px;
+      color: $color-accent;
+      transition: color 0.2s ease;
+    }
+
+    &:hover {
+      color: $color-primary;
+      .material-icons { color: $color-primary; }
+    }
+
+    &--active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+      background-color: $color-white;
+      border-radius: 4px 4px 0 0;
+
+      .material-icons { color: $color-primary; }
+    }
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 0;
+    padding: 28px;
+    align-items: start;
+  }
+
+  &__groups {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  &__group {
+    min-width: 180px;
+
+    &-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: $color-secondary;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba($color-accent, 0.2);
+    }
+
+    &-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 7px 0;
+    font-size: 0.9rem;
+    color: $color-primary;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: darken($color-primary, 10%);
+      padding-left: 6px;
+    }
+  }
+
+  // Promo card
+  &__promo {
+    background: linear-gradient(135deg, $color-primary 0%, darken($color-primary, 10%) 100%);
+    border-radius: 14px;
+    padding: 28px 24px;
+    color: $color-white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    position: relative;
+    overflow: hidden;
+
+    &--services {
+      background: linear-gradient(135deg, darken($color-secondary, 10%) 0%, $color-secondary 100%);
+    }
+
+    &--promo {
+      background: linear-gradient(135deg, #7B3F00 0%, #A0522D 100%);
+    }
+
+    &--ayuda {
+      background: linear-gradient(135deg, #1A4A6B 0%, #2C6E9E 100%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: rgba($color-white, 0.06);
+    }
+
+    &-content {
+      h3 {
+        font-size: 1.15rem;
+        font-weight: 500;
+        line-height: 1.35;
+        margin-bottom: 10px;
+        color: rgba($color-white, 0.9);
+
+        strong {
+          font-weight: 700;
+          color: $color-white;
+        }
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: rgba($color-white, 0.75);
+        line-height: 1.5;
+        margin-bottom: 18px;
+      }
+    }
+
+    &-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background-color: $color-white;
+      color: $color-primary;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      width: fit-content;
+
+      &:hover {
+        background-color: darken($color-white, 5%);
+        transform: translateY(-1px);
+      }
+    }
+
+    &-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: rgba($color-white, 0.15);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+      color: $color-white;
+
+      .material-icons {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+@keyframes megaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
