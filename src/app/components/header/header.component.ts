@@ -71,35 +71,35 @@ export class HeaderComponent {
         }
       ]
     },
-    {
-      id: 'digital',
-      icon: 'payments',
-      label: 'Pagos Digitales',
-      groups: [
-        {
-          title: 'Transferencias',
-          items: [
-            { label: 'Transferencias Inmediatas vía CCI', link: '#' },
-            { label: 'Conexión con PLIN y Yape', link: '#' }
-          ]
-        }
-      ]
-    },
-    {
-      id: 'lealtad',
-      icon: 'stars',
-      label: 'Programa de Lealtad',
-      groups: [
-        {
-          title: 'Recompensas',
-          items: [
-            { label: 'Acumula puntos con tu tarjeta de débito', link: '#' },
-            { label: 'Bonos por Plazo Fijo activo', link: '#' },
-            { label: 'Canjea por cashback, experiencias y más', link: '#' }
-          ]
-        }
-      ]
-    }
+    // {
+    //   id: 'digital',
+    //   icon: 'payments',
+    //   label: 'Pagos Digitales',
+    //   groups: [
+    //     {
+    //       title: 'Transferencias',
+    //       items: [
+    //         { label: 'Transferencias Inmediatas vía CCI', link: '#' },
+    //         { label: 'Conexión con PLIN y Yape', link: '#' }
+    //       ]
+    //     }
+    //   ]
+    // },
+    // {
+    //   id: 'lealtad',
+    //   icon: 'stars',
+    //   label: 'Programa de Lealtad',
+    //   groups: [
+    //     {
+    //       title: 'Recompensas',
+    //       items: [
+    //         { label: 'Acumula puntos con tu tarjeta de débito', link: '#' },
+    //         { label: 'Bonos por Plazo Fijo activo', link: '#' },
+    //         { label: 'Canjea por cashback, experiencias y más', link: '#' }
+    //       ]
+    //     }
+    //   ]
+    // }
   ];
 
   serviceTabs: MenuTab[] = [
@@ -119,27 +119,27 @@ export class HeaderComponent {
         }
       ]
     },
-    {
-      id: 'lealtad',
-      icon: 'stars',
-      label: 'Programa de Lealtad',
-      groups: [
-        {
-          title: 'Acumula puntos',
-          items: [
-            { label: 'Puntos por consumos con tarjeta de débito', link: '#' },
-            { label: 'Bonos por mantener Plazo Fijo activo', link: '#' }
-          ]
-        },
-        {
-          title: 'Canjea recompensas',
-          items: [
-            { label: 'Cashback directo a tu cuenta', link: '#' },
-            { label: 'Experiencias y productos exclusivos', link: '#' }
-          ]
-        }
-      ]
-    },
+    // {
+    //   id: 'lealtad',
+    //   icon: 'stars',
+    //   label: 'Programa de Lealtad',
+    //   groups: [
+    //     {
+    //       title: 'Acumula puntos',
+    //       items: [
+    //         { label: 'Puntos por consumos con tarjeta de débito', link: '#' },
+    //         { label: 'Bonos por mantener Plazo Fijo activo', link: '#' }
+    //       ]
+    //     },
+    //     {
+    //       title: 'Canjea recompensas',
+    //       items: [
+    //         { label: 'Cashback directo a tu cuenta', link: '#' },
+    //         { label: 'Experiencias y productos exclusivos', link: '#' }
+    //       ]
+    //     }
+    //   ]
+    // },
     {
       id: 'transferencias',
       icon: 'swap_horiz',
@@ -181,15 +181,20 @@ export class HeaderComponent {
     {
       id: 'lealtad',
       icon: 'stars',
-      label: 'Lealtad y Cashback',
+      label: 'Programa de Lealtad',
       groups: [
         {
-          title: 'Programa de Puntos y Millas',
+          title: 'Acumula puntos',
           items: [
-            { label: 'Acumula puntos por consumos con débito', link: '#' },
-            { label: 'Bonos por Plazo Fijo activo', link: '#' },
-            { label: 'Canjea por cashback directo a tu cuenta', link: '#' },
-            { label: 'Canjea por productos y experiencias', link: '#' }
+            { label: 'Puntos por consumos con tarjeta de débito', link: '#' },
+            { label: 'Bonos por mantener Plazo Fijo activo', link: '#' }
+          ]
+        },
+        {
+          title: 'Canjea recompensas',
+          items: [
+            { label: 'Cashback directo a tu cuenta', link: '#' },
+            { label: 'Experiencias y productos exclusivos', link: '#' }
           ]
         }
       ]
@@ -280,8 +285,10 @@ export class HeaderComponent {
         {
           title: 'Visítanos',
           items: [
-            { label: 'Ubica una agencia', link: '#' },
-            { label: 'Cajeros automáticos', link: '#' }
+            { label: 'Facebook', link: 'https://www.facebook.com/profile.php?id=61586803239064' },
+            { label: 'Instagram', link: 'https://www.instagram.com/bancoferrogalia/' },
+            { label: 'Tik Tok', link: 'https://www.tiktok.com/@bancoferrogalia' },
+            { label: 'X', link: 'https://x.com/ferrogalia1' },
           ]
         }
       ]
