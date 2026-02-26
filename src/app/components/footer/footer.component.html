@@ -29,7 +29,7 @@
           <div class="footer__social-links">
             @for (social of socialLinks; track social.label) {
               <a [href]="social.link" class="footer__social-link" [attr.aria-label]="social.label">
-                <span class="material-icons">{{ social.icon === 'facebook' ? 'facebook' : social.icon === 'twitter' ? 'tag' : social.icon === 'youtube' ? 'play_circle' : social.icon === 'linkedin' ? 'work' : 'photo_camera' }}</span>
+                <i [class]="social.icon"></i>
               </a>
             }
           </div>

@@ -37,10 +37,10 @@ export class FooterComponent {
   };
 
   socialLinks = [
-    { icon: 'facebook', link: '#', label: 'Facebook' },
-    { icon: 'twitter', link: '#', label: 'Twitter' },
-    { icon: 'youtube', link: '#', label: 'YouTube' },
-    { icon: 'linkedin', link: '#', label: 'LinkedIn' },
-    { icon: 'instagram', link: '#', label: 'Instagram' }
+    { icon: 'pi pi-facebook', link: 'https://www.facebook.com/profile.php?id=61586803239064', label: 'Facebook' },
+    { icon: 'pi pi-twitter', link: 'https://x.com/ferrogalia1', label: 'X' },
+    { icon: 'pi pi-tiktok', link: 'https://www.tiktok.com/@bancoferrogalia', label: 'Tiktok' },
+    { icon: 'pi pi-linkedin', link: '#', label: 'LinkedIn' },
+    { icon: 'pi pi-instagram', link: 'https://www.instagram.com/bancoferrogalia/', label: 'Instagram' }
   ];
 }
