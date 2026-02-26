@@ -1,22 +1,38 @@
-<section class="services">
+<section class="services" id="servicios">
   <div class="container">
     <div class="services__header">
-      <h2 class="services__title">¿Qué necesitas hacer hoy?</h2>
-      <p class="services__subtitle">Elige una opción y realiza tus operaciones de forma rápida y segura</p>
+      <span class="services__badge">Transaccionalidad</span>
+      <h2 class="services__title">Servicios y Canales</h2>
+      <p class="services__subtitle">Experiencia digital moderna y sin fricciones para tu día a día</p>
     </div>
 
     <div class="services__grid">
       @for (service of services; track service.title) {
-        <a [href]="service.link" class="services__card">
-          <div class="services__card-icon">
-            <span class="material-icons">{{ service.icon }}</span>
+        <div class="services__card" [class.services__card--highlight]="service.highlight" [class.services__card--coming-soon]="service.comingSoon">
+          <div class="services__card-top">
+            <div class="services__card-icon">
+              <span class="material-icons">{{ service.icon }}</span>
+            </div>
+            @if (service.comingSoon) {
+              <span class="services__card-badge">Próximamente</span>
+            }
           </div>
+
           <h3 class="services__card-title">{{ service.title }}</h3>
+          <span class="services__card-tagline">{{ service.tagline }}</span>
           <p class="services__card-description">{{ service.description }}</p>
-          <span class="services__card-arrow">
-            <span class="material-icons">arrow_forward</span>
-          </span>
-        </a>
+
+          @if (service.features.length > 0) {
+            <ul class="services__card-features">
+              @for (feature of service.features; track feature) {
+                <li class="services__card-feature">
+                  <span class="material-icons">check</span>
+                  {{ feature }}
+                </li>
+              }
+            </ul>
+          }
+        </div>
       }
     </div>
   </div>

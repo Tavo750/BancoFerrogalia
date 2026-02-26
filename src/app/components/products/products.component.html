@@ -1,73 +1,41 @@
-<section class="products">
+<section class="products" id="productos">
   <div class="container">
+    <div class="products__header">
+      <span class="products__badge">Captación</span>
+      <h2 class="products__title">Productos Financieros</h2>
+      <p class="products__subtitle">Diseñados para cubrir tus necesidades de ahorro e inversión</p>
+    </div>
+
     <div class="products__grid">
-      <!-- Pre-approved products section -->
-      <div class="products__preapproved">
-        <div class="products__preapproved-content">
-          <h2 class="products__title">¡Conoce tus productos preaprobados!</h2>
-          <p class="products__subtitle">Solo con tu número de documento</p>
-          <p class="products__info">Para clientes y no clientes Ferrogalia</p>
-          
-          <form class="products__form" (ngSubmit)="checkProducts()">
-            <div class="products__form-group">
-              <label for="docType" class="products__label">Tipo de documento</label>
-              <select id="docType" class="products__select">
-                <option value="dni">DNI</option>
-                <option value="ce">CE</option>
-                <option value="pasaporte">Pasaporte</option>
-              </select>
+      @for (product of products; track product.name; let i = $index) {
+        <div class="products__card" [class.products__card--active]="activeProduct === i" (click)="toggleProduct(i)">
+          <div class="products__card-header">
+            <div class="products__card-icon">
+              <span class="material-icons">{{ product.icon }}</span>
             </div>
-            
-            <div class="products__form-group">
-              <label for="docNumber" class="products__label">Número de documento</label>
-              <input 
-                type="text" 
-                id="docNumber" 
-                class="products__input"
-                [(ngModel)]="documentNumber"
-                name="documentNumber"
-                placeholder="Ingresa tu número"
-              >
+            <div class="products__card-titles">
+              <h3 class="products__card-name">{{ product.name }}</h3>
+              <span class="products__card-tagline">{{ product.tagline }}</span>
             </div>
-
-            <button type="submit" class="btn btn-primary products__btn">
-              Conocer
-            </button>
-          </form>
-
-          <p class="products__privacy">
-            Declaro conocer que esta información será utilizada únicamente para los fines de este proceso, 
-            y será tratada según lo indicado en la 
-            <a href="#">Política de Privacidad</a>.
-          </p>
-        </div>
-
-        <div class="products__preapproved-image">
-          <div class="products__image-placeholder">
-            <span class="material-icons">person_search</span>
+            <span class="material-icons products__card-toggle">
+              {{ activeProduct === i ? 'expand_less' : 'expand_more' }}
+            </span>
           </div>
-        </div>
-      </div>
 
-      <!-- Quick help section -->
-      <div class="products__help">
-        <h3 class="products__help-title">Ayuda rápida</h3>
-        <ul class="products__help-list">
-          @for (item of quickHelp; track item.title) {
-            <li class="products__help-item">
-              <a [href]="item.link" class="products__help-link">
-                <span class="material-icons">help_outline</span>
-                {{ item.title }}
-                <span class="material-icons products__help-arrow">chevron_right</span>
-              </a>
-            </li>
+          <p class="products__card-description">{{ product.description }}</p>
+
+          @if (activeProduct === i) {
+            <ul class="products__card-features">
+              @for (feature of product.features; track feature) {
+                <li class="products__card-feature">
+                  <span class="material-icons">check_circle</span>
+                  {{ feature }}
+                </li>
+              }
+            </ul>
           }
-        </ul>
-        <a href="#" class="products__help-more">
-          <span class="material-icons">support_agent</span>
-          Ir a Ayuda Rápida
-        </a>
-      </div>
+        </div>
+      }
     </div>
   </div>
 </section>
