@@ -35,6 +35,25 @@
 
         @if (!submitted) {
           <form class="ac-card__form" (ngSubmit)="onSubmit()">
+            <div class="ac-card__field" [class.ac-card__field--error]="errors['tipoCuenta']">
+              <label class="ac-card__label" for="tipoCuenta">Tipo de Cuenta</label>
+              <select
+                id="tipoCuenta"
+                class="ac-card__input"
+                [(ngModel)]="form.tipoCuenta"
+                name="tipoCuenta"
+                (change)="clearError('tipoCuenta')"
+              >
+                <option value="" disabled selected>Selecciona una cuenta</option>
+                @for (tipo of tiposCuenta; track tipo.value) {
+                  <option [value]="tipo.value">{{ tipo.label }}</option>
+                }
+              </select>
+              @if (errors['tipoCuenta']) {
+                <span class="ac-card__error">{{ errors['tipoCuenta'] }}</span>
+              }
+            </div>
+
             <div class="ac-card__field" [class.ac-card__field--error]="errors['dni']">
               <label class="ac-card__label" for="dni">DNI</label>
               <input
