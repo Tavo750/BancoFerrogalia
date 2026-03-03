@@ -20,11 +20,18 @@ export class AbrirCuentaComponent {
   constructor(private formularioService: FormularioService) {}
 
   form = {
+    tipoCuenta: '',
     dni: '',
     celular: '',
     correo: '',
     privacidad: false
   };
+
+  tiposCuenta = [
+    { value: 'simple', label: 'Cuenta simple' },
+    { value: 'ahorro', label: 'Cuenta de ahorros Cero Costo' },
+    { value: 'sueldo', label: 'Cuenta sueldo Beneficio total' }
+  ];
 
   errors: Record<string, string> = {};
 
@@ -101,6 +108,9 @@ export class AbrirCuentaComponent {
   onSubmit(): void {
     this.errors = {};
 
+    if (!this.form.tipoCuenta) {
+      this.errors['tipoCuenta'] = 'Selecciona un tipo de cuenta.';
+    }
     if (!this.form.dni || this.form.dni.length !== 8) {
       this.errors['dni'] = 'Ingresa un DNI válido de 8 dígitos.';
     }
@@ -138,7 +148,7 @@ export class AbrirCuentaComponent {
   }
 
   resetForm(): void {
-    this.form = { dni: '', celular: '', correo: '', privacidad: false };
+    this.form = { tipoCuenta: '', dni: '', celular: '', correo: '', privacidad: false };
     this.errors = {};
     this.submitted = false;
   }
