@@ -103,6 +103,10 @@
               <span class="ac-card__error">{{ errors['privacidad'] }}</span>
             }
 
+            @if (errors['general']) {
+              <span class="ac-card__error">{{ errors['general'] }}</span>
+            }
+
             <button type="submit" class="ac-card__btn" [disabled]="loading">
               @if (loading) {
                 <span class="material-icons ac-card__spinner">autorenew</span>

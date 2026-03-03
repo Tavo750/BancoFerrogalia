@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { FormularioService } from '../../service/formulario.service';
+import { CuentaNuevaBody } from '../../interfaces/cuentaNuevaBodyInterface';
 
 @Component({
   selector: 'app-abrir-cuenta',
@@ -14,6 +16,8 @@ export class AbrirCuentaComponent {
   submitted = false;
   loading = false;
   openFaq: number | null = null;
+
+  constructor(private formularioService: FormularioService) {}
 
   form = {
     dni: '',
@@ -113,10 +117,24 @@ export class AbrirCuentaComponent {
     if (Object.keys(this.errors).length > 0) return;
 
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.submitted = true;
-    }, 1500);
+
+    const body: CuentaNuevaBody = {
+      dni: this.form.dni,
+      celular: this.form.celular,
+      correo: this.form.correo,
+      tipo_cuenta: 'ahorro'
+    };
+
+    this.formularioService.CrearCuentaUsuario(body).subscribe({
+      next: () => {
+        this.loading = false;
+        this.submitted = true;
+      },
+      error: () => {
+        this.loading = false;
+        this.errors['general'] = 'Ocurrió un error al enviar la solicitud. Inténtalo de nuevo.';
+      }
+    });
   }
 
   resetForm(): void {
