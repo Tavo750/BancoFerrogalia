@@ -28,9 +28,9 @@ export class AbrirCuentaComponent {
   };
 
   tiposCuenta = [
-    { value: 'simple', label: 'Cuenta simple' },
-    { value: 'ahorro', label: 'Cuenta de ahorros Cero Costo' },
-    { value: 'sueldo', label: 'Cuenta sueldo Beneficio total' }
+    { value: 'simple', label: 'Cuenta Simple' },
+    { value: 'ahorro', label: 'Cuenta de Ahorros Cero Costo' },
+    { value: 'sueldo', label: 'Cuenta Sueldo Beneficio Total' }
   ];
 
   errors: Record<string, string> = {};
@@ -128,11 +128,13 @@ export class AbrirCuentaComponent {
 
     this.loading = true;
 
+    const selectedTipo = this.tiposCuenta.find(t => t.value === this.form.tipoCuenta);
+
     const body: CuentaNuevaBody = {
       dni: this.form.dni,
       celular: this.form.celular,
       correo: this.form.correo,
-      tipo_cuenta: 'ahorro'
+      tipo_cuenta: selectedTipo?.label ?? this.form.tipoCuenta
     };
 
     this.formularioService.CrearCuentaUsuario(body).subscribe({
