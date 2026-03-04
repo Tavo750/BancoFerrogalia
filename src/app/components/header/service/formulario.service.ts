@@ -8,7 +8,7 @@ import { CuentaNuevaBody } from '../interfaces/cuentaNuevaBodyInterface';
 })
 export class FormularioService {
 
-  private readonly url = 'https://a20215847.app.n8n.cloud/webhook/1c4d8d02-5e14-4417-93a0-0cb82864130f';
+  private readonly url = 'https://a20215847.app.n8n.cloud/webhook/308903a5-54aa-45af-877e-19b836e8ee7b';
 
   constructor(private http: HttpClient) { }
 
