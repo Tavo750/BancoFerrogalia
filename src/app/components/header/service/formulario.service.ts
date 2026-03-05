@@ -19,6 +19,6 @@ export class FormularioService {
   private readonly url2 = 'https://a20215847.app.n8n.cloud/webhook/91a326fc-32fa-40dc-84f2-c5582731a3dd';
 
   ValidarUsuario(body: ConfirmacionBody){
-        return this.http.post<any>(this.url2, body);
+    return this.http.post<any>(this.url2, body);
   }
 }
