@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormularioService } from '../../service/formulario.service';
 import { CuentaNuevaBody } from '../../interfaces/cuentaNuevaBodyInterface';
+import { ConfirmacionBody } from '../../interfaces/confirmacionBodyInterface';
 
 @Component({
   selector: 'app-abrir-cuenta',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './abrir-cuenta.component.html',
   styleUrl: './abrir-cuenta.component.scss'
 })
@@ -16,6 +17,8 @@ export class AbrirCuentaComponent {
   submitted = false;
   loading = false;
   openFaq: number | null = null;
+  verificationPending = false;
+  dniGuardado = '';
 
   constructor(private formularioService: FormularioService) {}
 
@@ -24,7 +27,8 @@ export class AbrirCuentaComponent {
     dni: '',
     celular: '',
     correo: '',
-    privacidad: false
+    privacidad: false,
+    codigoVerificacion: ''
   };
 
   tiposCuenta = [
@@ -140,7 +144,8 @@ export class AbrirCuentaComponent {
     this.formularioService.CrearCuentaUsuario(body).subscribe({
       next: () => {
         this.loading = false;
-        this.submitted = true;
+        this.dniGuardado = this.form.dni;
+        this.verificationPending = true;
       },
       error: () => {
         this.loading = false;
@@ -149,13 +154,43 @@ export class AbrirCuentaComponent {
     });
   }
 
-  resetForm(): void {
-    this.form = { tipoCuenta: '', dni: '', celular: '', correo: '', privacidad: false };
+  onVerify(): void {
     this.errors = {};
-    this.submitted = false;
+
+    if (!this.form.codigoVerificacion || this.form.codigoVerificacion.length !== 6) {
+      this.errors['codigoVerificacion'] = 'Ingresa un código de verificación válido de 6 dígitos.';
+      return;
+    }
+
+    this.loading = true;
+
+    const body: ConfirmacionBody = {
+      dni: this.dniGuardado,
+      codigo_verificacion: this.form.codigoVerificacion
+    };
+
+    this.formularioService.ValidarUsuario(body).subscribe({
+      next: () => {
+        this.loading = false;
+        this.verificationPending = false;
+        this.submitted = true;
+      },
+      error: () => {
+        this.loading = false;
+        this.errors['codigoVerificacion'] = 'Código de verificación inválido. Inténtalo de nuevo.';
+      }
+    });
   }
 
   toggleFaq(index: number): void {
     this.openFaq = this.openFaq === index ? null : index;
+  }
+
+  resetForm(): void {
+    this.form = { tipoCuenta: '', dni: '', celular: '', correo: '', privacidad: false, codigoVerificacion: '' };
+    this.errors = {};
+    this.submitted = false;
+    this.verificationPending = false;
+    this.dniGuardado = '';
   }
 }

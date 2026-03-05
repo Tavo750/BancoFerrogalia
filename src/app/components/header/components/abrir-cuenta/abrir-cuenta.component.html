@@ -20,10 +20,6 @@
           </div>
           <div class="ac-hero__highlight">
             <span class="material-icons">check_circle</span>
-            Apertura biométrica en minutos
-          </div>
-          <div class="ac-hero__highlight">
-            <span class="material-icons">check_circle</span>
             Sin monto mínimo de apertura
           </div>
         </div>
@@ -33,7 +29,7 @@
       <div class="ac-hero__card">
         <h2 class="ac-card__title">Solicítala 100% online</h2>
 
-        @if (!submitted) {
+        @if (!submitted && !verificationPending) {
           <form class="ac-card__form" (ngSubmit)="onSubmit()">
             <div class="ac-card__field" [class.ac-card__field--error]="errors['tipoCuenta']">
               <label class="ac-card__label" for="tipoCuenta">Tipo de Cuenta</label>
@@ -139,6 +135,35 @@
               <a href="#">Política de Privacidad</a> de Google y los
               <a href="#">Términos del Servicio</a>.
             </p>
+          </form>
+        } @else if (verificationPending) {
+          <form class="ac-card__form" (ngSubmit)="onVerify()">
+            <p class="ac-card__subtitle">Te hemos enviado un código de verificación por correo electrónico.</p>
+            
+            <div class="ac-card__field" [class.ac-card__field--error]="errors['codigoVerificacion']">
+              <label class="ac-card__label" for="codigoVerificacion">Código de Verificación</label>
+              <input
+                id="codigoVerificacion"
+                type="text"
+                class="ac-card__input"
+                placeholder="000000"
+                maxlength="6"
+                [(ngModel)]="form.codigoVerificacion"
+                name="codigoVerificacion"
+                (input)="clearError('codigoVerificacion')"
+              >
+              @if (errors['codigoVerificacion']) {
+                <span class="ac-card__error">{{ errors['codigoVerificacion'] }}</span>
+              }
+            </div>
+
+            <button type="submit" class="ac-card__btn" [disabled]="loading">
+              @if (loading) {
+                <span class="material-icons ac-card__spinner">autorenew</span>
+              } @else {
+                Verificar código
+              }
+            </button>
           </form>
         } @else {
           <div class="ac-card__success">
