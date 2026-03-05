@@ -57,16 +57,11 @@ export class HeaderComponent {
       icon: 'trending_up',
       label: 'Plazos Fijos',
       groups: [
-        {
-          title: 'Inversión Flexible',
-          items: [
-            { label: 'Plazo Fijo Flexible – Crecimiento Disponible', link: '#' }
-          ]
-        },
+        
         {
           title: 'Inversión de Rentabilidad',
           items: [
-            { label: 'Plazo Fijo No Flexible – Rentabilidad Máxima', link: '#' }
+            { label: 'Plazo Fijo No Flexible – Rentabilidad Máxima', link: '/simulador-plazo-fijo' }
           ]
         }
       ]

@@ -1,0 +1,116 @@
+<div class="simulador-container">
+  <div class="simulador-wrapper">
+    <!-- Header -->
+    <div class="simulador-header">
+      <h1>Simulador de Plazo Fijo</h1>
+      <p>Calcula cuánto podrías ganar con tu inversión</p>
+    </div>
+
+    <div class="simulador-content">
+      <!-- Formulario -->
+      <div class="formulario-section">
+        <div class="form-group">
+          <label for="monto">Monto a Depositar</label>
+          <div class="input-wrapper">
+            <span class="moneda-label">{{ simboloMoneda }}</span>
+            <input
+              type="text"
+              id="monto"
+              class="input-monto"
+              [value]="monto"
+              (change)="setMonto($event)"
+              placeholder="300"
+              inputmode="numeric"
+            />
+          </div>
+          <small class="hint">Mínimo: S/ 300 o USD 300</small>
+        </div>
+
+        <!-- Selector de Moneda -->
+        <div class="form-group">
+          <label>Moneda</label>
+          <div class="moneda-selector">
+            <button
+              class="moneda-btn"
+              [class.active]="moneda === 'soles'"
+              (click)="moneda = 'soles'"
+            >
+              Soles (S/)
+            </button>
+            <button
+              class="moneda-btn"
+              [class.active]="moneda === 'dolares'"
+              (click)="moneda = 'dolares'"
+            >
+              Dólares (USD)
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector de Plazo -->
+        <div class="form-group">
+          <label>Plazo</label>
+          <div class="plazo-buttons">
+            <ng-container *ngFor="let p of plazosDisponibles">
+              <button
+                class="plazo-btn"
+                [class.active]="plazo === p.valor && tipoplazo === p.tipo"
+                (click)="seleccionarPlazo(p)"
+              >
+                {{ p.label }}
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel de Resultados -->
+      <div class="resultados-section">
+        <h2>Proyección de tu Inversión</h2>
+
+        <div class="resultado-card">
+          <div class="resultado-item">
+            <span class="resultado-label">Monto Invertido</span>
+            <span class="resultado-valor">{{ simboloMoneda }} {{ monto | number: '1.2-2' }}</span>
+          </div>
+
+          <div class="resultado-item">
+            <span class="resultado-label">Tasa Anual (TREA)</span>
+            <span class="resultado-valor">{{ tasaAplicada }}%</span>
+          </div>
+
+          <div class="resultado-item">
+            <span class="resultado-label">Plazo</span>
+            <span class="resultado-valor">{{ plazo }} {{ tipoplazo === 'meses' ? 'meses' : 'años' }}</span>
+          </div>
+
+          <div class="resultado-divider"></div>
+
+          <div class="resultado-item highlight">
+            <span class="resultado-label">Interés Estimado</span>
+            <span class="resultado-valor">{{ simboloMoneda }} {{ interesEstimado | number: '1.2-2' }}</span>
+          </div>
+
+          <div class="resultado-item total">
+            <span class="resultado-label">Monto Total al Vencimiento</span>
+            <span class="resultado-valor-total">{{ simboloMoneda }} {{ montoTotal | number: '1.2-2' }}</span>
+          </div>
+        </div>
+
+        <p class="aclaracion">
+          *Esta simulación es orientativa. La tasa final será confirmada al momento de la apertura.
+        </p>
+      </div>
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="acciones-section">
+      <button class="btn btn-primary" (click)="continuarApertura()">
+        Continuar a la Apertura
+      </button>
+      <button class="btn btn-secondary" routerLink="/">
+        Volver al Inicio
+      </button>
+    </div>
+  </div>
+</div>
